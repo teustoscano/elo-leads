@@ -5,27 +5,26 @@ import {
   Link
 } from 'react-router-dom'
 
+import SignUp from './pages/SignUp'
+import Main from '.pages/Main'
+
+import './App.scss'
+
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/users">
-          <Users />
-        </Route>
-      </Switch>  
-    </Router>
+    <div className="App-wrapper">
+      <Router>
+        <Switch>
+          <Route path="/">
+            <SignUp />
+          </Route>
+          <Route path="/main">
+            <Main />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }
 
 export default App;
