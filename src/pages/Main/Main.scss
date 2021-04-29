@@ -1,14 +1,15 @@
 @import "./../../Colors.scss";
 
 .Main-wrapper {
-    background: rgb(253, 247, 245);
-    width: 85vw;
+    background: #f4f4f8;
+    width: 90vw;
     height: 85vh;
     border-radius: 10px;
     border: 6px solid black;
     padding: 1.5em;
     display: flex;
     flex-direction: column;
+    z-index: 10;
     .Main-header {
         // border: 2px solid red;
         flex: 1;
@@ -35,6 +36,7 @@
                 font-size: 2.65em;
                 color: $primary;
                 font-weight: 600;
+                letter-spacing: 1px;
                 // border: 2px solid red;
                 margin: 0;
             }
@@ -47,7 +49,25 @@
         }
     }
     .Main-container {
-        border: 2px solid red;
+        // border: 2px solid red;
         flex: 4;
+        .Main-container-btn{
+            background: $blue;
+            padding: .5em;
+            text-align: center;
+            border-radius: 4px;
+            width: 100%;
+            margin: 1.8em 0;
+            text-transform: uppercase;
+            color: #f4f4f8;
+            font-weight: 800;
+            box-shadow: 0px 2px 6px -2px black;
+            transition: all .4s;
+            &:hover{
+                box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.363);
+                cursor: pointer;
+                background: $red;
+            }
+        }
     }
 }

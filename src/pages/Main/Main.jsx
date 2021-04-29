@@ -15,7 +15,9 @@ const Main = () => {
                   <small>Cargo na empresa</small>
               </div>
           </div>
-          <div className="Main-container"></div>
+          <div className="Main-container">
+              <div className="Main-container-btn">novo lead &#8853;</div>
+          </div>
         </div>
     )
 }
