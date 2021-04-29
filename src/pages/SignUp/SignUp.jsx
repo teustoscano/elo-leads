@@ -1,5 +1,6 @@
 import React from 'react'
 import "./SignUp.scss"
+import { Link } from 'react-router-dom'
 
 import Logo from '../../assets/img/Logo-branca.png'
 
@@ -24,7 +25,7 @@ const SignUp = () => {
                 />
             </div>
             <div className="SignUp-bottom">
-                <a href="#">Registrar</a>
+                <Link to="/main">Registrar</Link>
             </div>
         </div>
     )
