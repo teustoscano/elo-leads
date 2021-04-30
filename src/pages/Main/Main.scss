@@ -69,5 +69,32 @@
                 background: $red;
             }
         }
+        .Main-container-board{
+            // border: 2px solid red;
+            display: flex;
+            justify-content: space-between;
+            .board{
+                // border: 2px solid red;
+                width: 32%;
+                height: 200px;
+                background-color: #e4e4e4;
+                .board-title{
+                    background-color: $primary;
+                    margin: 0;
+                    padding: .8em;
+                    text-align: center;
+                    font-weight: 600;
+                    color: $blue;
+                    border-top-left-radius: 4px;
+                    border-top-right-radius: 4px;
+                    text-transform: uppercase;
+                }
+                .card{
+                    background-color: $red;
+                    padding: 1em;
+                    margin: .4em 0;
+                }
+            }
+        }
     }
 }
