@@ -61,6 +61,9 @@ const Main = () => {
                 console.log('Errado')
                 return;
             }
+            if(result.source.droppableId === 'two'){
+                return;
+            }
             let arr = [...listTwo]
             arr.push(listOne[result.source.index])
             let oneArr = [...listOne];
@@ -73,6 +76,9 @@ const Main = () => {
         if(result.destination.droppableId === 'three'){
             if(result.source.droppableId === 'one'){
                 console.log('Errado')
+                return;
+            }
+            if(result.source.droppableId === 'three'){
                 return;
             }
             let arr = [...listThree]
