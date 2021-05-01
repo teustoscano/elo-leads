@@ -29,13 +29,65 @@ const FAKE_DATA = [
     },
 ]
 
+const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+  
+    return result;
+  };
+
 
 const Main = () => {
-    const [items,setItems] = React.useState(FAKE_DATA)
+    const [items, setItems] = React.useState(FAKE_DATA)
+    const [listOne, setListOne] = React.useState(FAKE_DATA)
+    const [listTwo, setListTwo] = React.useState([])
+    const [listThree, setListThree] = React.useState([])
 
-    console.log(items)
+    const onDragEnd = (result) => {
+        console.log(result)
+
+        if (!result.destination) {
+            return;
+        }
+
+        if(result.destination.droppableId === 'one'){
+            console.log('Errado')
+            return;
+        }
+
+        if(result.destination.droppableId === "two"){
+            if(result.source.droppableId === 'three'){
+                console.log('Errado')
+                return;
+            }
+            let arr = [...listTwo]
+            arr.push(listOne[result.source.index])
+            let oneArr = [...listOne];
+            oneArr.splice(result.source.index, 1)
+            
+            setListOne(oneArr)
+            setListTwo(arr)
+        }
+
+        if(result.destination.droppableId === 'three'){
+            if(result.source.droppableId === 'one'){
+                console.log('Errado')
+                return;
+            }
+            let arr = [...listThree]
+            arr.push(listTwo[result.source.index])
+            let twoArr = [...listTwo];
+            twoArr.splice(result.source.index, 1)
+
+            setListTwo(twoArr)
+            setListThree(arr)
+        }
+    }
+
+    console.log(listOne,listTwo,listThree)
     return (
-        <DragDropContext>
+        <DragDropContext onDragEnd={onDragEnd}>
             <div className="Main-wrapper">
                 <div className="Main-header">
                     <div className="Main-header-img">
@@ -57,7 +109,7 @@ const Main = () => {
                                     className="board"
                                 >
                                     <p className="board-title">Cliente em potencial</p>
-                                    {items.map((item, index) => (
+                                    {listOne.map((item, index) => (
                                         <Draggable
                                             key={item.id}
                                             draggableId={item.id}
@@ -87,6 +139,24 @@ const Main = () => {
                                     className="board"
                                 >
                                     <p className="board-title">Dados Confirmados</p>
+                                    {listTwo.map((item, index) => (
+                                        <Draggable
+                                            key={item.id}
+                                            draggableId={item.id}
+                                            index={index}
+                                        >
+                                            {(provided, snapshot) => (
+                                                <div
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                    className="card"
+                                                >
+                                                    {item.nome}
+                                                </div>
+                                            )}
+                                        </Draggable>
+                                    ))}
                                     {provided.placeholder}
                                 </div>
                             )}
@@ -99,6 +169,24 @@ const Main = () => {
                                     className="board"
                                 >
                                     <p className="board-title">Reunião agendada</p>
+                                    {listThree.map((item, index) => (
+                                        <Draggable
+                                            key={item.id}
+                                            draggableId={item.id}
+                                            index={index}
+                                        >
+                                            {(provided, snapshot) => (
+                                                <div
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                    className="card"
+                                                >
+                                                    {item.nome}
+                                                </div>
+                                            )}
+                                        </Draggable>
+                                    ))}
                                     {provided.placeholder}
                                 </div>
                             )}
