@@ -49,6 +49,17 @@
         padding: 2em 1em;
         display: flex;
         justify-content: center;
+        .disabled{
+            // background-color: rgb(231, 231, 231);
+            color: rgb(180, 180, 180);
+            pointer-events: none;
+            &::after{
+                background-color: rgb(155, 155, 155);
+            }
+            &::before{
+                background-color: rgb(204, 204, 204);
+            }
+        }
         a {
             width: 80%;
             height: 60px;
