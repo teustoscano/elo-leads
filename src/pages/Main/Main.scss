@@ -25,14 +25,14 @@
                 width: 100%;
             }
         }
-        .Main-header-text{
+        .Main-header-text {
             // border:2px solid red;
             width: 80%;
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            p{
+            p {
                 font-size: 2.65em;
                 color: $primary;
                 font-weight: 600;
@@ -40,8 +40,8 @@
                 // border: 2px solid red;
                 margin: 0;
             }
-            small{
-                font-size: .85em;
+            small {
+                font-size: 0.85em;
                 // border: 2px solid red;
                 color: $primary;
                 font-weight: 300;
@@ -51,9 +51,9 @@
     .Main-container {
         // border: 2px solid red;
         flex: 4;
-        .Main-container-btn{
+        .Main-container-btn {
             background: $blue;
-            padding: .5em;
+            padding: 0.5em;
             text-align: center;
             border-radius: 4px;
             width: 100%;
@@ -62,26 +62,28 @@
             color: #f4f4f8;
             font-weight: 800;
             box-shadow: 0px 2px 6px -2px black;
-            transition: all .4s;
-            &:hover{
+            transition: all 0.4s;
+            &:hover {
                 box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.363);
                 cursor: pointer;
                 background: $red;
             }
         }
-        .Main-container-board{
+        .Main-container-board {
             // border: 2px solid red;
             display: flex;
             justify-content: space-between;
-            .board{
-                // border: 2px solid red;
+            .board {
+                border: 2px solid $primary;
                 width: 32%;
-                height: 200px;
-                background-color: #e4e4e4;
-                .board-title{
+                // height: 200px;
+                border-top-left-radius: 6px;
+                border-top-right-radius: 6px;
+                // background-color: white;
+                .board-title {
                     background-color: $primary;
                     margin: 0;
-                    padding: .8em;
+                    padding: 0.8em;
                     text-align: center;
                     font-weight: 600;
                     color: $blue;
@@ -89,10 +91,13 @@
                     border-top-right-radius: 4px;
                     text-transform: uppercase;
                 }
-                .card{
-                    background-color: $red;
+                .card {
+                    border: 2px solid $primary;
+                    border-radius: 4px;
                     padding: 1em;
-                    margin: .4em 0;
+                    margin: 0.4em 0;
+                    font-weight: 600;
+                    background-color: white;
                 }
             }
         }
