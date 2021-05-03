@@ -3,7 +3,7 @@ import './Modal.scss'
 
 import { ToastContainer, toast } from 'react-toast'
 
-import Logo from '../assets/img/logo-EloGroup-branco.png'
+import Logo from '../../assets/img/logo-EloGroup-branco.png'
 
 
 const Modal = ({ show, handleModal, addLead }) => {
@@ -63,10 +63,21 @@ const Modal = ({ show, handleModal, addLead }) => {
     const saveLead = () => {
         savedLead()
         addLead({
-            id: '4',
             nome: state.name,
             telefone: state.phone,
             oportunidades: checkForm
+        })
+        setState({
+            name: "",
+            phone: "",
+            email: ""
+        })
+        setCheckForm({
+            all: false,
+            rpa: false,
+            product: false,
+            analytics: false,
+            bpm: false
         })
         handleModal(false)
     }

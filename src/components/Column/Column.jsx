@@ -1,7 +1,7 @@
 import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import './Column.scss'
-import './Task.scss'
+import '../Task/Task.scss'
 
 const Task = ({key, task, index}) => {
     return (

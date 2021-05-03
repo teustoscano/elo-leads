@@ -1,6 +1,7 @@
 import React from 'react'
 import "./SignUp.scss"
 import { Link } from 'react-router-dom'
+import { Reveal, Tween } from 'react-gsap';
 
 import Logo from '../../assets/img/Logo-branca.png'
 
@@ -17,7 +18,7 @@ const SignUp = () => {
         if (e.target.name === "password") {
             checkPassword(e.target.value)
         }
-        if(e.target.name === "name"){
+        if (e.target.name === "name") {
             checkName(e.target.value)
         }
     };
@@ -30,7 +31,7 @@ const SignUp = () => {
     }
 
     const checkConfirmedPass = (pass) => {
-        if(pass === state.password){
+        if (pass === state.password) {
             return true
         } else {
             return false
@@ -38,10 +39,10 @@ const SignUp = () => {
     }
 
     const checkName = (name) => {
-        if(name === ''){
+        if (name === '') {
             console.log('Nome existe?', name)
             return false
-        } else{
+        } else {
             return true
         }
     }
@@ -50,8 +51,8 @@ const SignUp = () => {
         let a = checkName(state.name)
         let b = checkPassword(state.password)
         let c = checkConfirmedPass(state.confirmedPass)
-        
-        if(a && b && c){
+
+        if (a && b && c) {
             setValidate(true)
         } else {
             setValidate(false)
@@ -61,43 +62,47 @@ const SignUp = () => {
     console.log(state)
 
     return (
-        <div className="SignUp-wrapper">
-            <div className="SignUp-top">
-                <img src={Logo} alt="Logo Elo Group" />
-            </div>
-            <div className="SignUp-mid">
-                <input
-                    type="text"
-                    placeholder="Nome"
-                    name="name"
-                    onChange={handleState}
-                    value={state.nome}
-                    required
-                    onKeyUp={validator}
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    onChange={handleState}
-                    value={state.password}
-                    required
-                    onKeyUp={validator}
-                />
-                <input
-                    type="password"
-                    placeholder="Confirmaçao"
-                    name="confirmedPass"
-                    onChange={handleState}
-                    value={state.confirmedPass}
-                    required
-                    onKeyUp={validator}
-                />
-            </div>
-            <div className="SignUp-bottom">
-                <Link to="/main" className={!validate && 'disabled'}>Registrar</Link>
-            </div>
-        </div>
+        <Reveal>
+            <Tween from={{opacity: 0, y: '40px'}} duration={1}>
+                <div className="SignUp-wrapper">
+                    <div className="SignUp-top">
+                        <img src={Logo} alt="Logo Elo Group" />
+                    </div>
+                    <div className="SignUp-mid">
+                        <input
+                            type="text"
+                            placeholder="Nome"
+                            name="name"
+                            onChange={handleState}
+                            value={state.nome}
+                            required
+                            onKeyUp={validator}
+                        />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                            onChange={handleState}
+                            value={state.password}
+                            required
+                            onKeyUp={validator}
+                        />
+                        <input
+                            type="password"
+                            placeholder="Confirmaçao"
+                            name="confirmedPass"
+                            onChange={handleState}
+                            value={state.confirmedPass}
+                            required
+                            onKeyUp={validator}
+                        />
+                    </div>
+                    <div className="SignUp-bottom">
+                        <Link to={{ pathname: "/main", state: state.name }} className={!validate && 'disabled'}>Registrar</Link>
+                    </div>
+                </div>
+            </Tween>
+        </Reveal>
     )
 }
 

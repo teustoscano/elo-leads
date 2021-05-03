@@ -1,4 +1,4 @@
-@import "../Colors.scss";
+@import "../../Colors.scss";
 
 .Modal-wrapper {
     width: 80vw;
@@ -45,6 +45,7 @@
             div {
                 color: white;
                 font-size: 2em;
+                cursor: pointer;
             }
         }
     }

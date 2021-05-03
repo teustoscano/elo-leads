@@ -1,38 +1,17 @@
 import React from 'react'
-import "./Main.scss"
-import Modal from '../../components/Modal'
-
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { ToastContainer, toast } from 'react-toast'
+import { Controls, PlayState, Tween } from 'react-gsap';
 
+import Modal from '../../components/Modal/Modal'
+import { FAKE_DATA } from './DATA'
+
+import "./Main.scss"
 import Logo from './../../assets/img/logo-square.png'
 
-const FAKE_DATA = [
-    {
-        id: '1',
-        nome: 'GFN Ltda',
-        telefone: '6152305555',
-        email: 'gfn@guerra.com.br',
-        oportunidades: [false, false, false, false, false]
-    },
-    {
-        id: '2',
-        nome: 'Guerra Consorcios',
-        telefone: '6130556533',
-        email: 'gerra@guerra.com',
-        oportunidades: [false, false, false, false, false]
-    },
-    {
-        id: '3',
-        nome: 'PURA',
-        telefone: '61898237128',
-        email: 'pura@pura.com',
-        oportunidades: [false, false, false, false, false]
-    },
-]
 
-const Main = () => {
-    const [items, setItems] = React.useState(FAKE_DATA)
+const Main = (props) => {
+    const [items, setItems] = React.useState(FAKE_DATA.length)
     const [listOne, setListOne] = React.useState(FAKE_DATA)
     const [listTwo, setListTwo] = React.useState([])
     const [listThree, setListThree] = React.useState([])
@@ -48,19 +27,24 @@ const Main = () => {
 
     const addLead = (info) => {
         let arr = listOne
-        arr.push(info)
+        arr.push({
+            id: (items + 1).toString(),
+            nome: info.nome,
+            oportunidades: info.checkForm,
+            telefone: info.telefone
+        })
+        console.log(info)
+        setItems(items + 1)
         setListOne(arr)
     }
 
     const onDragEnd = (result) => {
-        console.log(result)
 
         if (!result.destination) {
             return;
         }
 
         if (result.destination.droppableId === 'Cliente em Potencial') {
-            // console.log('Errado one')
             notificationError(result.source.droppableId, result.destination.droppableId)
             return;
         }
@@ -86,7 +70,6 @@ const Main = () => {
 
         if (result.destination.droppableId === 'Reunião Agendada') {
             if (result.source.droppableId === 'Cliente em Potencial') {
-                console.log('Errado')
                 notificationError(result.source.droppableId, result.destination.droppableId)
                 return;
             }
@@ -104,20 +87,22 @@ const Main = () => {
         }
     }
 
-    console.log(showModal)
+    console.log(listOne, items)
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <Modal show={showModal} handleModal={handleModal} addLead={addLead}/>
+            <Modal show={showModal} handleModal={handleModal} addLead={addLead} />
             <div className="Main-wrapper">
                 <ToastContainer position="top-right" delay={5000} />
                 <div className="Main-header">
-                    <div className="Main-header-img">
-                        <img src={Logo} alt="logo Elo Group Quadrado" />
-                    </div>
-                    <div className="Main-header-text">
-                        <p>Matheus Toscano</p>
-                        <small>Cargo na empresa</small>
-                    </div>
+                    <Tween from={{ opacity: 0, x: '-10px' }} stagger={0.7} duration={2}>
+                        <div className="Main-header-img">
+                            <img src={Logo} alt="logo Elo Group Quadrado" />
+                        </div>
+                        <div className="Main-header-text">
+                            <p>{props.location.state}</p>
+                            <small>Cargo na empresa</small>
+                        </div>
+                    </Tween>
                 </div>
                 <div className="Main-container">
                     <div className="Main-container-btn" onClick={() => handleModal(true)}>novo lead &#8853;</div>
