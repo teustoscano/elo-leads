@@ -1,9 +1,12 @@
 import React from 'react'
 import './Modal.scss'
 
+import { ToastContainer, toast } from 'react-toast'
+
 import Logo from '../assets/img/logo-EloGroup-branco.png'
 
-const Modal = ({ show, handleModal }) => {
+
+const Modal = ({ show, handleModal, addLead }) => {
     const [state, setState] = React.useState({
         name: "",
         phone: "",
@@ -20,7 +23,7 @@ const Modal = ({ show, handleModal }) => {
 
     React.useEffect(() => {
         validator()
-    },[state, checkForm])
+    }, [state, checkForm])
 
     const handleState = (e) => {
         setState({ ...state, [e.target.name]: e.target.value });
@@ -45,14 +48,28 @@ const Modal = ({ show, handleModal }) => {
         let b = state.phone.length > 0
         let c = state.email.length > 0
         let d = Object.keys(checkForm).some(k => checkForm[k])
-        console.log('D',d)
-        if(a && b && c && d){
+        console.log('D', d)
+        if (a && b && c && d) {
             setValidate(true)
         } else {
             setValidate(false)
         }
     }
-    console.log(state, checkForm)
+
+    const savedLead = () => toast(`Novo lead adicionado! 🥳`, {
+        backgroundColor: '#009fb7'
+    })
+
+    const saveLead = () => {
+        savedLead()
+        addLead({
+            id: '4',
+            nome: state.name,
+            telefone: state.phone,
+            oportunidades: checkForm
+        })
+        handleModal(false)
+    }
 
     if (!show) {
         return null;
@@ -96,26 +113,26 @@ const Modal = ({ show, handleModal }) => {
                         <div className="Modal-check-form">
                             <p>Oportunidades</p>
                             <div className="check-form-line">
-                                <input type="checkbox" name="all" id="all" value={checkForm.all} onClick={handleCheckboxes}/>
+                                <input type="checkbox" name="all" id="all" value={checkForm.all} onClick={handleCheckboxes} />
                             </div>
                             <div className="check-form-line">
-                                <input type="checkbox" name="RPA" id="rpa" onClick={handleCheckboxes} value={checkForm.rpa} checked={checkForm.rpa}/>
+                                <input type="checkbox" name="RPA" id="rpa" onClick={handleCheckboxes} value={checkForm.rpa} checked={checkForm.rpa} />
                                 <label>RPA</label>
                             </div>
                             <div className="check-form-line">
-                                <input type="checkbox" name="Produto Digital" id="product" onClick={handleCheckboxes}  value={checkForm.product} checked={checkForm.product}/>
+                                <input type="checkbox" name="Produto Digital" id="product" onClick={handleCheckboxes} value={checkForm.product} checked={checkForm.product} />
                                 <label>Produto Digital</label>
                             </div>
                             <div className="check-form-line">
-                                <input type="checkbox" name="Analytics" id="analytics" onClick={handleCheckboxes} value={checkForm.analytics} checked={checkForm.analytics}/>
+                                <input type="checkbox" name="Analytics" id="analytics" onClick={handleCheckboxes} value={checkForm.analytics} checked={checkForm.analytics} />
                                 <label>Analytics</label>
                             </div>
                             <div className="check-form-line">
-                                <input type="checkbox" name="BPM" id="bpm" onClick={handleCheckboxes} value={checkForm.bpm} checked={checkForm.bpm}/>
+                                <input type="checkbox" name="BPM" id="bpm" onClick={handleCheckboxes} value={checkForm.bpm} checked={checkForm.bpm} />
                                 <label>BPM</label>
                             </div>
                         </div>
-                        <div className={validate ? "Modal-btn" : "Modal-btn-disabled"} onClick={() => handleModal(false)}>Salvar</div>
+                        <div className={validate ? "Modal-btn" : "Modal-btn-disabled"} onClick={() => saveLead()}>Salvar</div>
                     </div>
                 </div>
             </div>

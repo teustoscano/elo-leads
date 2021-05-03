@@ -46,6 +46,12 @@ const Main = () => {
         setShowModal(val)
     }
 
+    const addLead = (info) => {
+        let arr = listOne
+        arr.push(info)
+        setListOne(arr)
+    }
+
     const onDragEnd = (result) => {
         console.log(result)
 
@@ -101,7 +107,7 @@ const Main = () => {
     console.log(showModal)
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <Modal show={showModal} handleModal={handleModal}/>
+            <Modal show={showModal} handleModal={handleModal} addLead={addLead}/>
             <div className="Main-wrapper">
                 <ToastContainer position="top-right" delay={5000} />
                 <div className="Main-header">
