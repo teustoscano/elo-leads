@@ -1,0 +1,26 @@
+@import "../../Colors.scss";
+
+.board {
+    // border: 2px solid red;
+    width: 32%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    background-color: #e4e4e4;
+    .board-title{
+        background-color: $primary;
+        margin: 0;
+        padding: .8em;
+        text-align: center;
+        font-weight: 600;
+        color: $blue;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        text-transform: uppercase;
+    }
+    .board-list{
+        padding: 8px;
+        flex-grow: 1;
+        min-height: 100px;
+    }
+}

@@ -1,0 +1,141 @@
+@import "../../Colors.scss";
+
+.Modal-wrapper {
+    width: 80vw;
+    background-color: $blue;
+    transition: 1s ease-out;
+    filter: blur(0);
+    position: absolute;
+    z-index: 1000;
+    height: 65vh;
+    box-shadow: -2px 2px 15px 2px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .Modal-header {
+        // border: 2px solid red;
+        background-color: $primary;
+        box-shadow: 0px 8px 10px -4px rgba(0, 0, 0, 0.363);
+        height: 25%;
+        padding: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .Modal-img {
+            border: 2px solid $primary;
+            padding: 0.3em;
+            background-color: $primary;
+            width: 30%;
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+        .Modal-title {
+            // border: 2px solid red;
+            width: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            p {
+                font-size: 2em;
+                font-weight: 500;
+                color: white;
+            }
+            div {
+                color: white;
+                font-size: 2em;
+                cursor: pointer;
+            }
+        }
+    }
+    .Modal-bottom {
+        // border: 2px solid red;
+        background-color: white;
+        box-shadow: 0px -10px 12px -4px rgba(0, 0, 0, 0.432);
+        display: flex;
+        height: 70%;
+        .Modal-form-left {
+            // border: 2px solid blue;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1em 0;
+            input {
+                padding: 0.75em;
+                width: 70%;
+                margin: 1.6em 0;
+                border-radius: 4px;
+                border: 1px solid $blue;
+                &::placeholder {
+                    color: $primary;
+                    font-size: 1.1em;
+                    letter-spacing: 1px;
+                }
+            }
+        }
+        .Modal-form-right {
+            // border: 2px solid hotpink;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1em 0;
+            justify-content: space-between;
+            .Modal-check-form {
+                display: flex;
+                flex-direction: column;
+                // background-color: grey;
+                width: 70%;
+                // border: 2px solid white;
+                .check-form-line {
+                    // border: 2px solid red;
+                    display: flex;
+                    align-items: center;
+                    // justify-content: center;
+                    margin: 0.2em 0;
+                    label {
+                        background-color: $blue;
+                        color: white;
+                        font-weight: 600;
+                        padding: 0.1em;
+                        width: 80%;
+                    }
+                }
+            }
+            .Modal-btn {
+                background: $blue;
+                padding: 0.5em;
+                text-align: center;
+                border-radius: 4px;
+                width: 85%;
+                margin: 1.8em 0;
+                text-transform: uppercase;
+                color: #f4f4f8;
+                font-weight: 800;
+                box-shadow: 0px 2px 6px -2px black;
+                transition: all 0.4s;
+                &:hover {
+                    box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.363);
+                    cursor: pointer;
+                    background: $red;
+                }
+            }
+            .Modal-btn-disabled {
+                background: rgb(175, 175, 175);
+                padding: 0.5em;
+                text-align: center;
+                border-radius: 4px;
+                width: 85%;
+                margin: 1.8em 0;
+                text-transform: uppercase;
+                font-weight: 800;
+                box-shadow: 0px 2px 6px -2px black;
+                transition: all 0.4s;
+                color: rgb(230, 230, 230);
+                pointer-events: none;
+            }
+        }
+    }
+}
