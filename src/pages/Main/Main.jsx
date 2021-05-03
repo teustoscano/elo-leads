@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Main.scss"
+import Modal from '../../components/Modal'
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { ToastContainer, toast } from 'react-toast'
@@ -35,10 +36,15 @@ const Main = () => {
     const [listOne, setListOne] = React.useState(FAKE_DATA)
     const [listTwo, setListTwo] = React.useState([])
     const [listThree, setListThree] = React.useState([])
+    const [showModal, setShowModal] = React.useState(false)
 
     const notificationError = (from, to) => toast(`Proibido arrastar de ${from} para ${to} 🥲`, {
         backgroundColor: '#fe4a49'
     })
+
+    const handleModal = (val) => {
+        setShowModal(val)
+    }
 
     const onDragEnd = (result) => {
         console.log(result)
@@ -92,9 +98,10 @@ const Main = () => {
         }
     }
 
-    console.log(listOne, listTwo, listThree)
+    console.log(showModal)
     return (
         <DragDropContext onDragEnd={onDragEnd}>
+            <Modal show={showModal} handleModal={handleModal}/>
             <div className="Main-wrapper">
                 <ToastContainer position="top-right" delay={5000} />
                 <div className="Main-header">
@@ -107,7 +114,7 @@ const Main = () => {
                     </div>
                 </div>
                 <div className="Main-container">
-                    <div className="Main-container-btn">novo lead &#8853;</div>
+                    <div className="Main-container-btn" onClick={() => handleModal(true)}>novo lead &#8853;</div>
                     <div className="Main-container-board">
                         <Droppable droppableId="Cliente em Potencial">
                             {(provided, snapshot) => (
